@@ -304,13 +304,6 @@
                 <div class="giftbox-items">
                     <div class="giftbox-item">
                         <img src="images/romantic-evening-set.jpg" alt="Romantic Evening Set">
-<img 
-    src="images/sample.jpg" 
-    alt="Giftbox Image" 
-    style="max-width: 150px; height: 150px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); border-radius: 5px; object-fit: cover; transition: transform 0.3s ease-in-out;" 
-    onmouseover="this.style.transform='scale(1.3)'" 
-    onmouseout="this.style.transform='scale(1)'"
->
                         <p>Romantic Evening Set</p>
                     </div>
                     <div class="giftbox-item">
@@ -329,21 +322,119 @@
         <div class="step">
             <h2>Step 1: Choose Your Products</h2>
             <div class="products">
-                <div class="product-item">
-                    <img src="images/chocolate-gift.jpg" alt="Chocolate Gift Set">
-                    <p>Chocolate Gift Set</p>
-                </div>
-                <div class="product-item">
-                    <img src="images/luxury-candle.jpg" alt="Luxury Candle">
-                    <p>Luxury Candle</p>
-                </div>
-                <div class="product-item">
-                    <img src="images/gourmet-snacks.jpg" alt="Gourmet Snacks">
-                    <p>Gourmet Snacks</p>
-                </div>
-                <div class="product-item">
-                    <img src="images/tea-selection.jpg" alt="Tea Selection">
-                    <p>Tea Selection</p>
+               <div class="product-item">
+    <div class="product-header">
+        <!-- دکمه مثبت بالای محصول -->
+        <button class="add-to-cart-btn" onclick="increaseQuantity('chocolate')">+</button>
+        <span id="quantity-chocolate">0</span> <!-- نمایش تعداد کلیک‌ها -->
+    </div>
+    <img src="images/chocolate-gift.jpg" alt="Chocolate Gift Set">
+    <p>Chocolate Gift Set</p>
+
+</div>
+
+<div class="product-item">
+    <div class="product-header">
+        <button class="add-to-cart-btn" onclick="increaseQuantity('luxuryCandle')">+</button>
+        <span id="quantity-luxuryCandle">0</span>
+    </div>
+    <img src="images/luxury-candle.jpg" alt="Luxury Candle">
+    <p>Luxury Candle</p>
+</div>
+
+<div class="product-item">
+    <div class="product-header">
+         <button class="add-to-cart-btn" onclick="increaseQuantity('teaSelection')">+</button>
+        <span id="quantity-teaSelection">0</span>
+    </div>
+    <img src="images/tea-selection.jpg" alt="Tea Selection">
+    <p>Tea Selection</p>
+</div>
+<div class="product-item">
+    <div class="product-header">
+        <button class="add-to-cart-btn" onclick="increaseQuantity('gourmetSnacks')">+</button>
+        <span id="quantity-gourmetSnacks">0</span>
+    </div>
+    <img src="images/gourmet-snacks.jpg" alt="Luxury Candle">
+    <p>gourmet-snacks</p>
+</div>
+   <script>
+    // برای هر محصول یک شمارنده داریم
+   let productQuantities = {
+    chocolate: 0,
+    luxuryCandle: 0,
+    teaSelection: 0,  // اضافه کردن تعداد محصول جدید
+    gourmetSnacks: 0   // اضافه کردن تعداد محصول جدید
+};
+   
+    // افزایش تعداد هنگام کلیک روی دکمه
+    function increaseQuantity(product) {
+    productQuantities[product]++;
+    updateQuantityDisplay(product);
+}
+
+    // بروزرسانی نمایش تعداد
+  function updateQuantityDisplay(product) {
+    const quantityDisplay = document.getElementById(`quantity-${product}`);
+    quantityDisplay.textContent = productQuantities[product];
+    }
+
+</script>
+</div>
+
+<style>
+    .product-item {
+        position: relative;
+        text-align: center;
+        margin: 20px; /* فاصله گذاری برای محصولات */
+    }
+
+    .product-header {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+    }
+
+    .add-to-cart-btn {
+        background-color: #d5852b;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .add-to-cart-btn:hover {
+        background-color: #f1a14c;
+    }
+
+    .product-header span {
+        margin-left: 10px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    /* استایل برای تصویر */
+    img {
+        width: 200px;
+        height: 200px;
+        margin-top: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* استایل برای متن پایین تصویر */
+    p {
+        margin-top: 10px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+</style>
+
                 </div>
             </div>
         </div>
@@ -493,21 +584,21 @@
             packagePreview.src = imageSrc;
         }
 
-        // تغییر پیش‌نمایش رنگ بسته
-        const colorChoice = document.getElementById('color-choice');
-        colorChoice.addEventListener('change', (e) => {
-            const selectedColor = e.target.value;
-            const packagePreview = document.getElementById('package-preview');
-            packagePreview.src = `images/package-${selectedColor}.jpg`;
-        });
+       // تغییر پیش‌نمایش رنگ بسته
+const colorChoice = document.getElementById('color-choice');
+colorChoice.addEventListener('change', (e) => {
+    const selectedColor = e.target.value;
+    const packagePreview = document.getElementById('package-preview');
+    packagePreview.src = `images/package-${selectedColor}.jpg`; // اصلاح شده
+});
 
-        // تغییر طرح بسته
-        const designStyle = document.getElementById('design-style');
-        designStyle.addEventListener('change', (e) => {
-            const selectedStyle = e.target.value;
-            const packagePreview = document.getElementById('package-preview');
-            packagePreview.src = `images/package-${selectedStyle}.jpg`;
-        });
+// تغییر طرح بسته
+const designStyle = document.getElementById('design-style');
+designStyle.addEventListener('change', (e) => {
+    const selectedStyle = e.target.value;
+    const packagePreview = document.getElementById('package-preview');
+    packagePreview.src = `images/package-${selectedStyle}.jpg`; // اصلاح شده
+});
 
         // آپلود تصویر دلخواه
         const customDesignInput = document.getElementById('custom-design');
@@ -548,17 +639,24 @@
         <div class="step">
             <h2>Giftbox Preview</h2>
             <div class="summary">
-                <p>Products:</p>
-                <ul>
-                    <li>Chocolate Gift Set</li>
-                    <li>Luxury Candle</li>
-                </ul>
+              
+                <div id="cart-section">
+    <h3>Your Cart</h3>
+
+    <p>No items yet. Add products to your cart!</p>
+
+</div>
+
+
+
                 <p>Personalization:</p>
                 <ul>
                     <li>Card: Thank You</li>
                     <li>Message: "You're amazing!"</li>
                 </ul>
             </div>
+
+
 
             <div class="final-product">
                 <h2>Your Final Product</h2>
@@ -613,7 +711,31 @@
         </div>
     </div>
 </div>
+<script>
+    let cart = [];
 
+    function addToCart(productName) {
+        cart.push(productName);
+        updateCartView();
+    }
+
+    function updateCartView() {
+        const cartSection = document.getElementById('cart-section');
+        cartSection.innerHTML = `
+            <h3>Your Cart</h3>
+            <ul>
+
+
+                ${cart.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+            <button onclick="checkout()">Proceed to Checkout</button>
+        `;
+    }
+
+    function checkout() {
+        alert('Proceeding to checkout with items: ' + cart.join(', '));
+        // Add further functionality for checkout process here
+    }
+</script>
 </body>
 </html>
-
